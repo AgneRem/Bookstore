@@ -77,7 +77,7 @@ class AuthorsController extends Controller
     {
       $this->authorize('update', Author::class);
       $author->update($request->all());
-      return redirect('admin/author');
+      return redirect('admin/authors');
     }
 
     /**

@@ -44,17 +44,17 @@ class BooksController extends Controller
    */
   public function store(StoreBookRequest $request)
   {
-    $timestamp = Carbon::now()->toAtomString();
-    $name = $request->file('photo')->getClientOriginalName();
-    $request->file('photo')->storeAs('public/image', $timestamp.$name);
-    Image::make(Input::file('photo'))->resize(300, 200)->save(storage_path('app/public/image/'.$timestamp.$name));
+    // $timestamp = Carbon::now()->toAtomString();
+    // $name = $request->file('photo')->getClientOriginalName();
+    // $request->file('photo')->storeAs('public/image', $timestamp.$name);
+    // Image::make(Input::file('photo'))->resize(300, 200)->save(storage_path('app/public/image/'.$timestamp.$name));
     $book = new Book();
     $book->title = $request->title;
     $book->year = $request->year;
     $book->price = $request->price;
     $book->description = $request->description;
     $book->author_id = $request->author_id;
-    $book->photo = $timestamp.$name;
+    $book->photo = $request->photo;
     $book->save();
     return redirect('/admin/books')->with(['message'=>'Book add success']);
   }

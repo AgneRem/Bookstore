@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Mail\ReservationConfirmed;
 use App\Mail\ReservationAdmin;
 use Illuminate\Support\Facades\Mail;
-use App\Book;
+
 
 class ReservationController extends Controller
 {
@@ -19,7 +19,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+      $reservations = Reservation::all();
+      return view('admin.reservation.index', compact('reservations'));
     }
 
     /**
@@ -43,7 +44,7 @@ class ReservationController extends Controller
 
         $reservation = new Reservation();
         $reservation->user_id = $request->user()->id;
-        $reservation->title = $request->user()->id;
+        $reservation->title = $request->title;
         $reservation->save();
         Mail::to($request->user())->send(new ReservationConfirmed($reservation));
 
@@ -92,6 +93,7 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+      $reservation->delete();
+      return redirect('admin/reservations')->with(['message'=>'Reservation is deleted']);
     }
 }

@@ -24,12 +24,13 @@
 @include('layouts.adminNav')
 
 </body>
-
-<footer class="pull-left footer">
-  <div class="col-md-12">
-    <hr class="divider"> Copyright &COPY; 2017 <a href="#">Bookstore</a>
-  </div>
-</footer>
+<div class="container">
+  <footer class="pull-left footer">
+    <div class="col-md-12">
+      <hr class="divider"> Copyright &COPY; 2017 <a href="#">Bookstore</a>
+    </div>
+  </footer>
+</div>
 
 <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"

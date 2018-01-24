@@ -79,6 +79,13 @@
                     </ul>
                   </div>
                 </nav>
+                <nav class="navbar navbar-default" role="navigation">
+                  <div class="side-menu-container">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ route('reservations.index')}}"><i class="fa fa-bookmark-o" aria-hidden="true"></i> Reservations</a></li>
+                    </ul>
+                  </div>
+                </nav>
 
             </div>
         </div>
