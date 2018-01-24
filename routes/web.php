@@ -14,6 +14,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/read/{id}', 'BooksController@show')->name('read');
+Route::get('/reservation', 'ReservationController@store')->name('reservation')->middleware('auth');
 
 Route::group(['middleware'=> ['auth', 'admin'], 'prefix'=>'admin'], function () {
     Route::get('/', 'AdminController@index')->name('admin');

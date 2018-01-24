@@ -16,7 +16,7 @@
       <p>{{ $book->description}}</p>
       <h3>Price: {{$book->price}} Eur</h3>
       <a href="{{ route ('home')}}" class="btn btn-default">Back</a>
-      <a href="#" class="btn btn-success">Reserve</a>
+      <a href="{{ route ('reservation')}}" class="btn btn-success">Reserve</a>
     </div >
   </div>
 </div>
