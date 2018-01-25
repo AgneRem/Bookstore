@@ -10,9 +10,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Authors</div>
-                    <a href="{{ route ('admin')}}" class="btn btn-default">Atgal</a>
-                    <a href="{{ route('authors.create')}}" class="btn btn-success">Prideti</a>
+                    <div class="panel-heading">Authors</div>  
                     <div class="panel-body">
                         <table class="table table-bordered">
                             <thead>

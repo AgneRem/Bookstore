@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Mail\ReservationConfirmed;
 use App\Mail\ReservationAdmin;
 use Illuminate\Support\Facades\Mail;
+use App\Book;
 
 
 class ReservationController extends Controller
@@ -19,7 +20,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-      $reservations = Reservation::all();
+      $reservations = Reservation::join('authors', 'author_id', '=', 'authors.id')->get();
       return view('admin.reservation.index', compact('reservations'));
     }
 
@@ -45,6 +46,8 @@ class ReservationController extends Controller
         $reservation = new Reservation();
         $reservation->user_id = $request->user()->id;
         $reservation->title = $request->title;
+        $author = Book::where('title', $request->title)->first();
+        $reservation->author_id = $author->id;
         $reservation->save();
         Mail::to($request->user())->send(new ReservationConfirmed($reservation));
 

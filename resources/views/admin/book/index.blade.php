@@ -30,7 +30,7 @@
                                 <td>{{ $book->year }}</td>
                                 <td>{{ $book->price }}</td>
                                 <td>
-                                    <a href="{{ route('books.edit', $book)}}" class="btn btn-default">Edit</a>
+                                    <a href="{{ route('books.edit', $book->id)}}" class="btn btn-default">Edit</a>
                                     <form action="{{ route('books.destroy', $book) }}" method="POST" style="display: inline" onsubmit="return confirm('Are you sure?');">
                                     <input type="hidden" name="_method" value="DELETE">
                                      {{ csrf_field() }}
@@ -38,13 +38,17 @@
                                     </form>
                                 </td>
                             </tr>
+
                             @empty
                                 <tr>
                                     <td colspan="3">No entries found.</td>
                                 </tr>
                             @endforelse
-
+                            @if (isset($s))
+                            {{ $books->appends(['s' => $s])->links()}}
+                            @endif
                         </tbody>
+
                     </table>
                 </div>
             </div>

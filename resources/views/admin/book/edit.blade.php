@@ -11,7 +11,7 @@
   </div>
   <div class="form-group">
     <label for="photo">Book picture</label>
-    <input type="text" name="photo" value="{{ $book->photo}}" placeholder="Please select a picture" class="form-control" id="photo">
+    <input type="file" name="photo" value="{{ $book->photo}}" placeholder="Please select a picture" class="form-control" id="photo">
   </div>
   <div class="form-group">
     <label for="year">Year</label>
@@ -21,7 +21,7 @@
     <label for="author_id">Select author</label>
     <select class="form-control" id="author_id" name="author_id">
       @foreach ($authors as $author)
-      <option value="{{$author->id}}">{{ $author->first_name}} {{ $author->last_name}}</option>
+      <option value="{{$author->id}}" @if ($author->id == $book->author_id) selected @endif>{{ $author->first_name}} {{ $author->last_name}}</option>
       @endforeach
     </select>
   </div>

@@ -20,11 +20,9 @@ class Book extends Model
     return $this->belongsTo('App\Author');
   }
 
-  public function book(){
-    return $this->belongsTo('App\Book');
-  }
-
   public function scopeSearch($query, $s){
-    return $query->where('title', 'like', '%' .$s. '%');
+    return $query->join('authors', 'author_id', '=', 'authors.id')->where('title', 'like', '%' .$s. '%')
+      ->orWhere('first_name', 'like', '%'.$s.'%')
+      ->orWhere('last_name', 'like', '%'.$s.'%');
   }
 }

@@ -18,9 +18,10 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left" method="GET" role="search">
+            <form class="navbar-form navbar-left" method="GET" role="search" action="{{ route('admin.search')}}">
                 <div class="form-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search">
+                    <input type="text" name="s" class="form-control" placeholder="Search a book"
+                    value="{{ isset($s) ? $s : ''}}">
                 </div>
                 <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
             </form>

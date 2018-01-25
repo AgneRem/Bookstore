@@ -82,7 +82,7 @@
   </div>
 </header>
 
-<body style="background-color:#d7a2a233">
+<body style="background-color:">
 
           @yield('content')
 </body>

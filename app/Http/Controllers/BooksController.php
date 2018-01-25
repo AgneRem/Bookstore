@@ -18,10 +18,12 @@ class BooksController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
+  public function index(Request $request)
   {
-    $books = Book::paginate(10);
-    return view('admin.book.index', compact('books'));
+    $books = Book::all();
+    $q = $request->input('q');
+    // $books = Book::search($q)->paginate(10);
+    return view('admin.book.index', compact('books', 'q'));
   }
 
   /**
@@ -45,16 +47,15 @@ class BooksController extends Controller
   public function store(StoreBookRequest $request)
   {
     // $timestamp = Carbon::now()->toAtomString();
-    // $name = $request->file('photo')->getClientOriginalName();
-    // $request->file('photo')->storeAs('public/image', $timestamp.$name);
-    // Image::make(Input::file('photo'))->resize(300, 200)->save(storage_path('app/public/image/'.$timestamp.$name));
+    $name = $request->file('photo')->getClientOriginalName();
+    $request->file('photo')->storeAs('public/image/', $name);
     $book = new Book();
     $book->title = $request->title;
     $book->year = $request->year;
     $book->price = $request->price;
     $book->description = $request->description;
     $book->author_id = $request->author_id;
-    $book->photo = $request->photo;
+    $book->photo = 'public/image/'.$name;
     $book->save();
     return redirect('/admin/books')->with(['message'=>'Book add success']);
   }
@@ -80,6 +81,7 @@ class BooksController extends Controller
   public function edit(Book $book)
   {
     $this->authorize('update', Book::class);
+    // dd($book);
     $authors = Author::all();
     return view('admin.book.edit', compact('book'), compact('authors'));
   }
@@ -95,17 +97,17 @@ class BooksController extends Controller
   {
     $this->authorize('update', Book::class);
 
-    // if($request->file('photo')){
-    //   $timestamp = Carbon::now()->toAtomString();
-    //   $name = $request->file('photo')->getClientOriginalName();
-    //   $path = $request->file('photo')->storeAs('public/image', $timestamp.$name);
-    //   Image::make(Input::file('photo'))->resize(300, 200)->save(storage_path('app/public/image/'.$timestamp.$name));
-    //   $path_old = '/public/image/';
-    //   if (!empty($book->photo)){
-    //     Storage::delete($path_old.$book->photo);
-    //   }
-    //   $book->photo = $timestamp.$name;
-    // }
+    if($request->file('photo')){
+
+      $path_old = '/public/image/';
+      if (!empty($book->photo)){
+        Storage::delete($path_old.$book->photo);
+      }
+      $name = $request->file('photo')->getClientOriginalName();
+      $request->file('photo')->storeAs('public/image/', $name);
+      $book->photo = '/public/image/'.$name;
+    }
+
     $book->title = $request->title;
     $book->year = $request->year;
     $book->price = $request->price;
@@ -125,9 +127,9 @@ class BooksController extends Controller
   public function destroy(Book $book)
   {
     $this->authorize('delete', Book::class);
-    // if (!empty($book->photo)){
-    //   Storage::delete($book->photo);
-    // }
+    if (!empty($book->photo)){
+      Storage::delete($book->photo);
+    }
     $book->delete();
     return redirect('admin/books')->with(['message'=>'Book is deleted']);
   }

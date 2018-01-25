@@ -16,6 +16,7 @@
                         <thead>
                             <tr>
                                 <th>User name</th>
+                                <th>Author</th>
                                 <th>Book title</th>
                                 <th>Reserved at</th>
                                 <th>Actions</th>
@@ -24,7 +25,8 @@
                         <tbody>
                             @forelse($reservations as $reservation)
                             <tr>
-                                <td>{{ $reservation->user_id }}</td>
+                                <td>{{ $reservation->user['name'] }}</td>
+                                <td>{{ $reservation->first_name}} {{ $reservation->last_name}}</td>
                                 <td>{{ $reservation->title }}</td>
                                 <td>{{ $reservation->created_at }}</td>
                                 <td>
