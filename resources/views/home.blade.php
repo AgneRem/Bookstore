@@ -27,8 +27,9 @@
       </div>
     </div>
     @endforeach
-    {{ $books->links()}}
+
   </div>
+    {{ $books->appends(['s' => $s])->links()}}
 </div>
 
 

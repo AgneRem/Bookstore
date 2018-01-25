@@ -25,7 +25,7 @@
 
 </body>
 <div class="container">
-  <footer class="pull-left footer">
+  <footer class="text-center">
     <div class="col-md-12">
       <hr class="divider"> Copyright &COPY; 2017 <a href="#">Bookstore</a>
     </div>

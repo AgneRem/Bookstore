@@ -16,23 +16,34 @@
 </head>
 
 <header>
-  <div class="topbar" style="text-align: center">
+  <div class="topbar text-center" style="background-color:#bcc7ed">
     <small>Reading is a conversation. All books talk. But a good book listens as well.   Mark Haddon</small>
   </div>
   <div class="container">
     <nav>
-      <div class="navbar-header" style="margin:20px 0">
-          <a class="navbar-brand" href="#">Home</a>
+      <div class="navbar-header" style="margin:20px 0 7px 0; width:1000px">
+          <a class="navbar-brand" href="{{ route('home')}}">Home</a>
           <a class="navbar-brand" href="#">About us</a>
           <a class="navbar-brand" href="#">Events</a>
           <a class="navbar-brand" href="#">Books</a>
           <a class="navbar-brand" href="#">Authors</a>
           <a class="navbar-brand" href="#">Email Us</a>
+            <form class="navbar-brand" method="GET" action="{{ route('home')}}" class="form-inline" style="padding:0">
+                <input type="text" name="s" class="form-control"
+                placeholder="Find a book by title or author name"
+                style="font-size:15px; width:250px; display:inline"
+                value="{{ isset($s) ? $s : ''}}" >
+  <button type="submit" class="btn btn-default">Search</button>
+
+            </form>
+
       </div>
+
       <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
           <!-- Right Side Of Navbar -->
           <ul class="nav navbar-nav navbar-right">
+
               <!-- Authentication Links -->
               @guest
                   <li><a href="{{ route('login') }}">Login</a></li>
@@ -61,6 +72,7 @@
                       </ul>
                   </li>
               @endguest
+
           </ul>
       </div>
     </nav>
@@ -70,13 +82,13 @@
   </div>
 </header>
 
-<body style="background-color:">
+<body style="background-color:#d7a2a233">
 
           @yield('content')
 </body>
 <div class="text-center">
 
-      <footer class="pull-left footer">
+      <footer>
         <div class="col-md-12">
           <hr class="divider"> Copyright &COPY; 2017 <a href="#">Bookstore</a>
         </div>

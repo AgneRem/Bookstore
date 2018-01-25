@@ -4,7 +4,7 @@
 
 
 <div class="container">
-  <div class="row">
+  <div class="row" style="margin:40px 70px 60px 60px">
     <div class="col-md-4">
         <img src="{{ $book->photo}}" alt="">
     </div>

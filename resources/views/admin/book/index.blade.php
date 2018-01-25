@@ -43,6 +43,7 @@
                                     <td colspan="3">No entries found.</td>
                                 </tr>
                             @endforelse
+
                         </tbody>
                     </table>
                 </div>

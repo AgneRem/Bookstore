@@ -23,4 +23,8 @@ class Book extends Model
   public function book(){
     return $this->belongsTo('App\Book');
   }
+
+  public function scopeSearch($query, $s){
+    return $query->where('title', 'like', '%' .$s. '%');
+  }
 }

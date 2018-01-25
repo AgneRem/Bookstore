@@ -31,11 +31,6 @@
                         {{ Auth::user()->name }}
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">SETTINGS</li>
-                        <li class=""><a href="#">Other Link</a></li>
-                        <li class=""><a href="#">Other Link</a></li>
-                        <li class=""><a href="#">Other Link</a></li>
-                        <li class="divider"></li>
                         <li>
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -53,7 +48,7 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<div class="container-fluid main-container">
+<div class="container-fluid main-container" style="height:500px">
     <div class="col-md-2 sidebar">
         <div class="row">
             <!-- uncomment code for absolute positioning tweek see top comment in css -->
@@ -90,7 +85,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8 ">
+    <div class="col-md-8" >
       @yield('content')
     </div>
 </div>
