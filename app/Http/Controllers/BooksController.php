@@ -81,7 +81,6 @@ class BooksController extends Controller
   public function edit(Book $book)
   {
     $this->authorize('update', Book::class);
-    // dd($book);
     $authors = Author::all();
     return view('admin.book.edit', compact('book'), compact('authors'));
   }
@@ -97,16 +96,16 @@ class BooksController extends Controller
   {
     $this->authorize('update', Book::class);
 
-    if($request->file('photo')){
-
-      $path_old = '/public/image/';
-      if (!empty($book->photo)){
-        Storage::delete($path_old.$book->photo);
-      }
-      $name = $request->file('photo')->getClientOriginalName();
-      $request->file('photo')->storeAs('public/image/', $name);
-      $book->photo = '/public/image/'.$name;
-    }
+    // if($request->file('photo')){
+    //
+    //   $path_old = '/public/image/';
+    //   if (!empty($book->photo)){
+    //     Storage::delete($path_old.$book->photo);
+    //   }
+    //   $name = $request->file('photo')->getClientOriginalName();
+    //   $request->file('photo')->storeAs('public/image/', $name);
+    //   $book->photo = '/public/image/'.$name;
+    // }
 
     $book->title = $request->title;
     $book->year = $request->year;
@@ -127,9 +126,9 @@ class BooksController extends Controller
   public function destroy(Book $book)
   {
     $this->authorize('delete', Book::class);
-    if (!empty($book->photo)){
-      Storage::delete($book->photo);
-    }
+    // if (!empty($book->photo)){
+    //   Storage::delete($book->photo);
+    // }
     $book->delete();
     return redirect('admin/books')->with(['message'=>'Book is deleted']);
   }

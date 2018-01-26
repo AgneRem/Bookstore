@@ -44,9 +44,9 @@
                                     <td colspan="3">No entries found.</td>
                                 </tr>
                             @endforelse
-                            @if (isset($s))
+                            <!-- @if (isset($s))
                             {{ $books->appends(['s' => $s])->links()}}
-                            @endif
+                            @endif -->
                         </tbody>
 
                     </table>

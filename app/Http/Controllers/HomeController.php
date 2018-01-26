@@ -22,10 +22,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-      $s = $request->input('s');
-      $books = Book::search($s)->paginate(6);
-      return view('home', compact('books', 's'));
+      // $s = $request->input('s');
+      $books = Book::paginate(6);
+      return view('home', compact('books'));
     }
 }

@@ -2,6 +2,12 @@
 
 @section('content')
 
+@if (session('message'))
+<div class="alert alert-info">
+  {{ session('message')}}
+</div>
+@endif
+
 
 <div class="container">
   <div class="row" style="margin:40px 70px 60px 60px">

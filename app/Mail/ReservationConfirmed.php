@@ -33,7 +33,8 @@ class ReservationConfirmed extends Mailable
       return $this->view('email.reservation')->with([
 
         'name' => $this->reservation->user->name,
-        'title' => $this->reservation->title
+        'title' => $this->reservation->title,
+        'author' => $this->reservation->author_id
       ]);
     }
 }

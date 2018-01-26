@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +22,7 @@ Route::group(['middleware'=> ['auth', 'admin'], 'prefix'=>'admin'], function () 
     Route::resource('/authors', 'AuthorsController');
     Route::resource('/books', 'BooksController');
     Route::resource('/reservations', 'ReservationController');
-
+    
 });
 
 Route::get('public/image/{filename}', function ($filename) {

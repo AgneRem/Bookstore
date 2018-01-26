@@ -11,9 +11,9 @@ class AdminController extends Controller
     return view('admin.index');
   }
 
-  public function search(Request $request){
-    $s = $request->input('s');
-    $books = Book::search($s)->paginate(10);
-    return view('admin.book.index', compact('books', 's'));
-  }
+  // public function search(Request $request){
+  //   $s = $request->input('s');
+  //   $books = Book::search($s)->paginate(10);
+  //   return view('admin.book.index', compact('books', 's'));
+  // }
 }

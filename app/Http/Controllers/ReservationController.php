@@ -47,7 +47,7 @@ class ReservationController extends Controller
         $reservation->user_id = $request->user()->id;
         $reservation->title = $request->title;
         $author = Book::where('title', $request->title)->first();
-        $reservation->author_id = $author->id;
+        $reservation->author_id = $author->author_id;
         $reservation->save();
         Mail::to($request->user())->send(new ReservationConfirmed($reservation));
 

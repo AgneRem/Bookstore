@@ -1,10 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div style="background-image:url(http://www.baltana.com/files/wallpapers-5/Light-Background-Desktop-Wallpaper-16371.jpg)">
   <div class="container">
     <h1>Welcome to our bookstore!</h1>
-
+    @if (session('message'))
+    <div class="alert alert-success">
+      {{ session('message')}}
+    </div>
+    @endif
     <div class="row">
       @foreach($books as $book)
       <div class="col-xs-6 col-sm-3 col-md-2" style="padding-left: 0px;">
@@ -27,9 +32,8 @@
       </div>
     </div>
     @endforeach
-
+     {{ $books->links()}}
   </div>
-    {{ $books->appends(['s' => $s])->links()}}
 </div>
 
 
