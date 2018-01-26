@@ -22,10 +22,21 @@ Route::group(['middleware'=> ['auth', 'admin'], 'prefix'=>'admin'], function () 
     Route::resource('/authors', 'AuthorsController');
     Route::resource('/books', 'BooksController');
     Route::resource('/reservations', 'ReservationController');
-    
+
 });
 
 Route::get('public/image/{filename}', function ($filename) {
+ $path = storage_path('app/public/image/' . $filename);
+ if (!File::exists($path)) {
+     abort(404);
+ }
+ $file = File::get($path);
+ $type = File::mimeType($path);
+ $response = Response::make($file, 200);
+ $response->header("Content-Type", $type);
+ return $response;
+});
+Route::get('{r}/public/image/{filename}', function ($r,$filename) {
  $path = storage_path('app/public/image/' . $filename);
  if (!File::exists($path)) {
      abort(404);
