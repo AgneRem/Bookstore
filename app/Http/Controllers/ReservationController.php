@@ -9,6 +9,7 @@ use App\Mail\ReservationConfirmed;
 use App\Mail\ReservationAdmin;
 use Illuminate\Support\Facades\Mail;
 use App\Book;
+use App\Author;
 
 
 class ReservationController extends Controller
@@ -49,7 +50,8 @@ class ReservationController extends Controller
         $author = Book::where('title', $request->title)->first();
         $reservation->author_id = $author->author_id;
         $reservation->save();
-        Mail::to($request->user())->send(new ReservationConfirmed($reservation));
+        $author2 = Author::find($author->author_id);
+        Mail::to($request->user())->send(new ReservationConfirmed($reservation, $author2));
 
         return redirect('/')->with(['message'=>'Your reservation was successful! Please notice that we keep it for 2 days, if you need it for longer time, please contact us']);
     }

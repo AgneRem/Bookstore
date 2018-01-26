@@ -36,6 +36,7 @@ Route::get('public/image/{filename}', function ($filename) {
  $response->header("Content-Type", $type);
  return $response;
 });
+
 Route::get('{r}/public/image/{filename}', function ($r,$filename) {
  $path = storage_path('app/public/image/' . $filename);
  if (!File::exists($path)) {

@@ -12,15 +12,17 @@ class ReservationConfirmed extends Mailable
     use Queueable, SerializesModels;
 
     protected $reservation;
+    protected $author;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($reservation)
+    public function __construct($reservation, $author)
     {
         $this->reservation = $reservation;
+        $this->author = $author;
     }
 
     /**
@@ -34,7 +36,7 @@ class ReservationConfirmed extends Mailable
 
         'name' => $this->reservation->user->name,
         'title' => $this->reservation->title,
-        'author' => $this->reservation->author_id
+        'author' => $this->author->first_name.' '.$this->author->last_name
       ]);
     }
 }
